@@ -1,0 +1,463 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+/* Importa a fonte Quicksand do Google Fonts */
+
+* {
+    box-sizing: border-box;
+    /* Garante que padding e border não aumentem o tamanho total do elemento */
+}
+
+:root {
+    --primary-color: #007E6E;
+    /* Cor primária (verde escuro) */
+    --secondary-color: #007E6E;
+    /* Cor secundária (verde escuro para texto) */
+    --tertiary-color: #73AF6F;
+    /* Cor terciária (verde claro) */
+    --bg-color: #E7DEAF;
+    /* Cor de fundo (bege claro) */
+}
+
+body {
+    margin: 0;
+    /* Remove a margem padrão do body */
+    background: var(--bg-color);
+    /* Define a cor de fundo usando uma variável */
+    color: var(--secondary-color);
+    /* Define a cor do texto padrão usando uma variável */
+    font-family: "Quicksand", sans-serif;
+    /* Define a família da fonte */
+    overflow-x: hidden;
+}
+
+/* Estilos da barra de rolagem para navegadores WebKit (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+    width: 12px;
+    /* Largura da barra de rolagem vertical */
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+    /* Cor da pista da barra de rolagem (fundo) */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--tertiary-color);
+    /* Cor do polegar da barra de rolagem */
+    border-radius: 10px;
+    /* Arredondamento das bordas do polegar */
+    border: 3px solid var(--bg-color);
+    /* Borda para criar um espaçamento em volta do polegar */
+}
+
+
+header {
+    padding: 2rem 4rem;
+    /* Espaçamento interno (2rem em cima/baixo, 1rem nos lados) */
+    display: flex;
+    /* Habilita o layout flexbox */
+    align-items: center;
+    /* Alinha os itens verticalmente ao centro */
+    justify-content: space-between;
+    /* Distribui os itens com espaço ao redor */
+    position: sticky;
+    /* Mantém o cabeçalho fixo no topo ao rolar a página */
+    top: 0;
+    /* Posição do topo quando sticky */
+    background: var(--bg-color);
+    /* Cor de fundo do cabeçalho */
+    z-index: 10;
+    /* Define a ordem de empilhamento para ficar sobre outros elementos */
+    border-bottom: 1px solid #e0d6a7;
+    /* Adiciona uma borda inferior */
+    gap: 1rem;
+    /* Espaçamento entre os elementos flex */
+}
+
+header h1 {
+    font-size: 1.5rem;
+    /* Tamanho da fonte */
+    margin: 0;
+    /* Remove a margem padrão */
+    font-weight: 500;
+    /* Peso da fonte (médio) */
+    white-space: nowrap;
+    /* Impede a quebra de linha do texto */
+}
+
+header>div {
+    display: flex;
+    align-items: center;
+}
+
+div input {
+    padding: 0.375rem 0.75rem;
+    /* Espaçamento interno */
+    border-radius: 1rem;
+    /* Arredonda as bordas */
+    border: 1px solid var(--tertiary-color);
+    /* Define a borda */
+    background: var(--bg-color);
+    /* Cor de fundo */
+    font-family: inherit;
+    /* Herda a família da fonte do elemento pai */
+    font-size: 1.5rem;
+    /* Tamanho da fonte */
+    transition: all 0.2s ease;
+    /* Adiciona uma transição suave para todas as propriedades */
+    width: 30rem;
+    /* Largura do input */
+    color: var(--secondary-color);
+    /* Cor do texto digitado */
+    /* margin-right: .5rem; */
+    /* Margem à direita */
+}
+
+div input::placeholder {
+    font-size: 1.2rem;
+    /* Tamanho da fonte do placeholder */
+    font-weight: 300;
+    /* Peso da fonte do placeholder */
+    color: var(--tertiary-color);
+    /* Cor do texto do placeholder */
+}
+
+div input:focus {
+    outline: none;
+    /* Remove a borda de foco padrão */
+    border-color: var(--tertiary-color);
+    /* Muda a cor da borda ao focar */
+    box-shadow: 0 0 0 0.1rem var(--tertiary-color);
+    /* Adiciona uma sombra de caixa para indicar foco */
+}
+
+#botao-busca {
+    padding: 0.375rem 2rem;
+    /* Espaçamento interno */
+    border-radius: 1rem;
+    /* Arredonda as bordas */
+    border: none;
+    /* Remove a borda padrão */
+    cursor: pointer;
+    /* Muda o cursor para uma mão ao passar por cima */
+    font-family: inherit;
+    /* Herda a família da fonte */
+    font-weight: 500;
+    /* Peso da fonte */
+    font-size: 1.5rem;
+    /* Tamanho da fonte */
+    white-space: nowrap;
+    /* Impede a quebra de linha do texto */
+    transition: background-color 0.2s ease, color 0.2s ease;
+    /* Transição suave para cor de fundo e cor do texto */
+    background-color: transparent;
+    /* Cor de fundo transparente */
+    color: var(--secondary-color);
+    /* Cor do texto */
+    border: none;
+    /* Remove a borda */
+}
+
+#botao-busca:hover {
+    color: var(--tertiary-color);
+    /* Muda a cor do texto ao passar o mouse */
+}
+
+.header-socials {
+    display: flex;
+    gap: 1.5rem;
+    white-space: nowrap;
+}
+
+.header-socials a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    position: relative; /* Essencial para posicionar o tooltip */
+}
+
+/* Estilo do balão do tooltip */
+.header-socials a::after {
+    content: attr(data-tooltip); /* Pega o texto do atributo data-tooltip */
+    position: absolute;
+    bottom: 150%; /* Posiciona acima do link */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0; /* Começa invisível */
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 20;
+}
+
+/* Mostra o tooltip ao passar o mouse */
+.header-socials a:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.header-socials a:hover {
+    color: var(--tertiary-color);
+}
+
+#botao-busca:active {
+    transform: scale(0.98);
+    /* Efeito de clique (diminui o tamanho) */
+}
+
+main {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /* Adiciona uma barra de rolagem vertical se o conteúdo exceder a altura */
+    max-width: 80rem;
+    /* Largura máxima do conteúdo principal */
+    margin: 0 auto;
+    /* Centraliza o conteúdo principal horizontalmente */
+    margin-top: 2rem;
+    /* Margem no topo */
+    min-height: calc(100vh - 10rem - 4rem);
+    /* Define uma altura mínima para ocupar a tela, mas permite crescer se necessário */
+}
+
+article {
+    background: none;
+    /* Sem cor de fundo */
+    border-radius: 0;
+    /* Sem bordas arredondadas */
+    padding: 0;
+    /* Remove o padding */
+    padding: 0 1rem;
+    /* Espaçamento interno nos lados */
+    margin-bottom: 1.25rem;
+    /* Margem inferior */
+    box-shadow: none;
+    /* Sem sombra */
+    transition: background-color 0.3s ease, border-bottom-color 0.3s ease, transform 0.3s ease;
+    /* Transição suave */
+    border-bottom: 1px solid var(--bg-color);
+    /* Borda inferior */
+    padding-bottom: 1.5rem;
+    /* Espaçamento interno inferior */
+}
+
+article:hover {
+    transform: scale(1.01);
+    /* Aumenta ligeiramente o tamanho ao passar o mouse */
+    cursor: pointer;
+    /* Muda o cursor para uma mão */
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* Espaço entre a imagem e o título */
+    margin-bottom: 0.25rem;
+}
+
+.card-logo {
+    width: 28px; /* Tamanho da imagem */
+    height: 28px; /* Tamanho da imagem */
+    object-fit: contain; /* Garante que a imagem não seja distorcida */
+}
+
+article h2 {
+    margin-top: 0;
+    /* Remove a margem superior */
+    font-weight: 600;
+    /* Peso da fonte */
+    font-size: 1.6rem;
+    /* Tamanho da fonte */
+    border-bottom: none;
+    /* Sem borda inferior */
+    padding-bottom: 0;
+    /* Sem espaçamento interno inferior */
+    margin-bottom: 0.25rem;
+    /* Margem inferior */
+    color: var(--primary-color);
+    /* Cor do texto */
+}
+
+article p {
+    margin: 0.5rem 0;
+    /* Margem superior e inferior */
+    line-height: 1.6;
+    /* Altura da linha para melhor legibilidade */
+    font-size: 1rem;
+    /* Tamanho da fonte */
+    margin-bottom: 0.5rem;
+    /* Margem inferior */
+    color: var(--secondary-color);
+    /* Cor do texto */
+}
+
+article p strong {
+    color: var(--tertiary-color);
+    /* Cor do texto em negrito */
+    font-weight: 400;
+    /* Peso da fonte */
+}
+
+article a {
+    color: var(--primary-color);
+    /* Cor do link */
+    text-decoration: none;
+    /* Remove o sublinhado padrão */
+    font-weight: 200;
+    /* Peso da fonte */
+}
+
+article a:hover {
+    text-decoration: underline;
+    /* Adiciona sublinhado ao passar o mouse */
+}
+
+.footer {
+    position: relative;
+    /* Posição relativa para manter no fluxo do documento */
+    left: 0;
+    /* Alinha à esquerda */
+    width: 100%;
+    /* Largura total */
+    color: var(--tertiary-color);
+    /* Cor do texto */
+    background-color: var(--bg-color);
+    /* Cor de fundo */
+    padding: 2rem 1rem;
+    /* Espaçamento interno */
+    border-top: 1px solid #3c4043;
+    /* Borda superior */
+    font-size: 0.8rem;
+    /* Tamanho da fonte */
+    text-align: center;
+}
+
+.footer-location {
+    color: #9aa0a6;
+    /* Cor do texto */
+    margin-bottom: 10px;
+    /* Margem inferior */
+}
+
+.footer-links {
+    list-style: none;
+    /* Remove os marcadores da lista */
+    display: flex;
+    /* Habilita o layout flexbox */
+    flex-wrap: wrap;
+    /* Permite que os itens quebrem para a próxima linha */
+    justify-content: center;
+    /* Centraliza os itens horizontalmente */
+    gap: 2rem;
+    /* Espaçamento entre os links */
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.copyright {
+    font-size: 0.75rem;
+    color: var(--tertiary-color);
+}
+
+.footer-links a {
+    color: var(--primary-color);
+    /* Cor do link */
+    text-decoration: none;
+    /* Remove o sublinhado */
+    transition: color 0.2s;
+    /* Transição suave para a cor */
+}
+
+.footer-links a:hover {
+    color: var(--tertiary-color);
+    /* Muda a cor do link ao passar o mouse (variável não definida) */
+}
+
+@media (max-width: 850px) {
+    header {
+        /* Estilos para telas com largura máxima de 768px */
+        flex-direction: column;
+        /* Organiza os itens do cabeçalho em coluna */
+        padding: 1rem;
+        /* Reduz o espaçamento interno */
+    }
+
+    header h1 {
+        /* Estilos para o h1 no cabeçalho em telas menores */
+        text-align: center;
+        /* Centraliza o texto */
+        margin-bottom: 1rem;
+        /* Adiciona margem inferior */
+    }
+
+    .header-socials {
+        margin-top: 3rem;
+        justify-content: center;
+    }
+
+    div input {
+        flex-grow: 1;
+        width: auto;
+        /* Ocupa a largura total do contêiner */
+    }
+
+    main {
+        height: auto;
+        /* Permite que a altura se ajuste ao conteúdo */
+        min-height: calc(100vh - 15rem);
+        /* Estilos para o main em telas menores */
+        padding: 0 1rem;
+        /* Adiciona espaçamento lateral */
+    }
+
+    article:hover {
+        /* Estilos para o article em telas menores */
+        transform: none;
+        /* Remove o efeito de escala ao passar o mouse */
+    }
+}
+
+@media (max-width: 480px) {
+
+    div input,
+    /* Estilos para o input e seu placeholder em telas muito pequenas */
+    div input::placeholder {
+        font-size: 1rem;
+        /* Reduz o tamanho da fonte */
+    }
+
+    #botao-busca {
+        font-size: 1rem;
+        /* Ajusta o tamanho da fonte do botão */
+    }
+
+    article h2 {
+        /* Estilos para o h2 do article em telas muito pequenas */
+        font-size: 1.3rem;
+        /* Reduz o tamanho da fonte */
+        word-break: break-word;
+        /* Quebra palavras longas para não estourarem o layout */
+    }
+
+    .footer {
+        position: static;
+        /* Remove o posicionamento absoluto para que siga o fluxo normal */
+        text-align: center;
+        /* Centraliza o texto */
+    }
+
+    button {
+        /* Estilos para o botão em telas muito pequenas */
+        margin-top: 1rem;
+        /* Adiciona margem no topo */
+    }
+
+    .header-socials {
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+}
