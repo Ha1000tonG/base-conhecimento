@@ -73,7 +73,18 @@ header {
     /* Espaçamento entre os elementos flex */
 }
 
-header h1 {
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.header-logo {
+    height: 40px;
+    width: 40px;
+}
+
+.logo-container h1 {
     font-size: 1.5rem;
     /* Tamanho da fonte */
     margin: 0;
@@ -104,13 +115,14 @@ div input {
     /* Tamanho da fonte */
     transition: all 0.2s ease;
     /* Adiciona uma transição suave para todas as propriedades */
-    width: 30rem;
+    width: 45rem;
     /* Largura do input */
     color: var(--secondary-color);
     /* Cor do texto digitado */
     /* margin-right: .5rem; */
     /* Margem à direita */
 }
+
 
 div input::placeholder {
     font-size: 1.2rem;
@@ -386,7 +398,7 @@ article a:hover {
         /* Reduz o espaçamento interno */
     }
 
-    header h1 {
+    .logo-container {
         /* Estilos para o h1 no cabeçalho em telas menores */
         text-align: center;
         /* Centraliza o texto */
